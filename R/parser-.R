@@ -38,26 +38,6 @@ rd_parser <- function(..., parser = "markdown") {
 #' inserting special formatting. The class is exported to allow developers to
 #' extend and customize the parser with additional formatting styles.
 #'
-#' @details
-#' For Rd document sections (methods beginning with `rd_*`), the internal logic
-#' trims leading and trailing newline characters (`"\\r?\\n"`). Therefore, the
-#' input for these methods consists only of the content. These methods return a
-#' character vector, where each element corresponds to a line. Finally, a
-#' newline character (`"\n"`) is always added at the end.
-#'
-#' The `tabular`, `ol`, `ul`, and `dl` methods accept text in a specific format
-#' and return a character vector, where each element corresponds to a line.
-#'
-#' The `subsection` Rd markup macro accepts a single-element character vector
-#' and can also return a character vector (since it is very similar to the
-#' `rd_section` method), where each element corresponds to a line. But note for
-#' some document, it's not possible to add text after a `subsection` for current
-#' section, like markdown.
-#'
-#' For other Rd markup macros (methods not beginning with `"rd_"`),
-#' they always accept a single-element character vector and should return a
-#' character vector, where each element corresponds to a line.
-#'
 #' @param text A one-element character representing the input text.
 #' @param texts A character vector of multiple text elements.
 #' @param href A string specifying the target URL.

@@ -1,10 +1,3 @@
-#' Rd document parser in pandoc markdown style
-#'
-#' A [`RdParser`] generator for pandoc markdown style.
-#'
-#' @importFrom R6 R6Class
-#' @export
-#' @keywords internal
 RdParserMarkdown <- R6::R6Class(
     "RdParserMarkdown",
     inherit = RdParser,

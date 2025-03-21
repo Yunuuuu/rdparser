@@ -9,26 +9,6 @@ files. It includes functions for applying markup, structuring content, and
 inserting special formatting. The class is exported to allow developers to
 extend and customize the parser with additional formatting styles.
 }
-\details{
-For Rd document sections (methods beginning with \verb{rd_*}), the internal logic
-trims leading and trailing newline characters (\code{"\\\\r?\\\\n"}). Therefore, the
-input for these methods consists only of the content. These methods return a
-character vector, where each element corresponds to a line. Finally, a
-newline character (\code{"\\n"}) is always added at the end.
-
-The \code{tabular}, \code{ol}, \code{ul}, and \code{dl} methods accept text in a specific format
-and return a character vector, where each element corresponds to a line.
-
-The \code{subsection} Rd markup macro accepts a single-element character vector
-and can also return a character vector (since it is very similar to the
-\code{rd_section} method), where each element corresponds to a line. But note for
-some document, it's not possible to add text after a \code{subsection} for current
-section, like markdown.
-
-For other Rd markup macros (methods not beginning with \code{"rd_"}),
-they always accept a single-element character vector and should return a
-character vector, where each element corresponds to a line.
-}
 \references{
 \itemize{
 \item \url{https://developer.r-project.org/parseRd.pdf}
