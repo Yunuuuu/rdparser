@@ -211,7 +211,12 @@ rd_parse_items <- function(x, enum = FALSE, ..., parser = rd_parser()) {
     groups <- groups[keep]
     descriptions <- vapply(
         split(x, groups),
-        function(text) rd_flatten_para(text, ..., parser = parser),
+        function(text) {
+            gsub(
+                "^[ \t\r\n]+|\r?\n\\s*$", "",
+                rd_flatten_para(text, ..., parser = parser)
+            )
+        },
         character(1L),
         USE.NAMES = FALSE
     )

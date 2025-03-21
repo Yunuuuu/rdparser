@@ -42,12 +42,6 @@ rd_parser <- function(..., parser = "markdown") {
 #' @param texts A character vector of multiple text elements.
 #' @param href A string specifying the target URL.
 #' @param level An integer representing the header level.
-#' @param lang The language of the code block. Usually `R`.
-#' @param table A matrix of the table content.
-#' @param align An character of `"right"`, `"center"`, `"left"` indicate
-#' the alignment for each column in the table.
-#' @param terms A character vector of terms.
-#' @param descriptions A character vector of term definitions.
 #' @references
 #' - <https://developer.r-project.org/parseRd.pdf>
 #' - <https://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Rd-format>
@@ -66,7 +60,8 @@ RdParser <- R6Class(
         #     stop_not_implement(self, "blockquote")
         # },
         #' @description Add a code block
-        #' @return A string of formatted text.
+        #' @param lang The language of the code block. Usually `r`.
+        #' @return The formatted text.
         codeblock = function(text, lang = NULL) {
             stop_not_implement(self, "codeblock")
         },
@@ -85,12 +80,17 @@ RdParser <- R6Class(
         ul = function(texts) stop_not_implement(self, "ul"),
 
         #' @description Create a definition list
+        #' @param terms A character vector of terms.
+        #' @param descriptions A character vector of term definitions.
         #' @return A character of each line for the list.
         dl = function(terms, descriptions) {
             stop_not_implement(self, "dl")
         },
 
         #' @description Create a tabular representation
+        #' @param table A matrix of the table content.
+        #' @param align An character of `"right"`, `"center"`, `"left"` indicate
+        #' the alignment for each column in the table.
         #' @return A character of each row for the table.
         tabular = function(table, align) stop_not_implement(self, "tabular"),
 

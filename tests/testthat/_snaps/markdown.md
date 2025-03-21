@@ -149,7 +149,22 @@
         Label: 
            
                  This text is indented in a way pkgdown doesn't like.
-             
+               
+
+---
+
+    
+    ## Description 
+    - First level, itemize, first item
+        
+      - Second level, itemize, first item
+      - Second level, itemize, second item
+            
+        1. Third level, enumerate, first item
+        2. Third level, enumerate, second item
+    - First level, itemize, second item 
+    
+        
 
 # preformatted blocks aren't double escaped
 

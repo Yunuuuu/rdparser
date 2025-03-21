@@ -123,12 +123,12 @@ Add a code block
 \describe{
 \item{\code{text}}{A one-element character representing the input text.}
 
-\item{\code{lang}}{The language of the code block. Usually \code{R}.}
+\item{\code{lang}}{The language of the code block. Usually \code{r}.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+The formatted text.
 }
 }
 \if{html}{\out{<hr>}}

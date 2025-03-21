@@ -193,8 +193,26 @@ test_that("nested item with whitespace parsed correctly", {
     \\item{Label}{
 
       This text is indented in a way pkgdown doesn't like.
-  }}"
+    }}"
     )
+    expect_snapshot_output(cat_line(out))
+
+    out <- rd_text("
+\\description{
+\\itemize{
+  \\item First level, itemize, first item
+  \\itemize{
+    \\item Second level, itemize, first item
+    \\item Second level, itemize, second item
+    \\enumerate{
+      \\item Third level, enumerate, first item
+      \\item Third level, enumerate, second item
+    }
+  }
+  \\item First level, itemize, second item
+}
+}
+    ", fragment = FALSE)
     expect_snapshot_output(cat_line(out))
 })
 
