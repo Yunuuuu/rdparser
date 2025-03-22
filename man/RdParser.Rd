@@ -123,7 +123,7 @@ Add a code block
 \describe{
 \item{\code{text}}{A one-element character representing the input text.}
 
-\item{\code{lang}}{The language of the code block. Usually \code{r}.}
+\item{\code{lang}}{The language of the code block. Usually \code{r}/\code{R}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -918,7 +918,7 @@ A hook function executed after parsing the Rd section.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}

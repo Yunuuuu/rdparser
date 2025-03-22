@@ -287,7 +287,7 @@ RdParser <- R6Class(
 
         #' @description A hook function executed after parsing the Rd section.
         #' @param parsed The output text from `rd_*` sectioning methods.
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         rd_postparse = function(parsed) parsed,
 
         #' @description Format the argument setction
