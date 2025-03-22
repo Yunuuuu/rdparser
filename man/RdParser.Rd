@@ -106,7 +106,7 @@ Indicate a section header
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -128,7 +128,7 @@ Add a code block
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-The formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -148,7 +148,7 @@ Add a comment block
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -255,7 +255,7 @@ Create a hyperlink
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -275,7 +275,7 @@ Create an email link
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -299,7 +299,7 @@ Insert an image
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -319,7 +319,7 @@ Apply italic formatting
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -339,7 +339,7 @@ Apply bold formatting
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -359,7 +359,7 @@ Apply italic and bold formatting
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -379,7 +379,7 @@ Apply double quotes
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -399,7 +399,7 @@ Apply single quotes
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -419,7 +419,7 @@ Format a fragment of R code or the name of an R object
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -439,7 +439,7 @@ Format text as keyboard input
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -459,7 +459,7 @@ Indicate verbatim word-wrapped text
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -479,7 +479,7 @@ Indicate verbatim text (no wrapping or reformatting)
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -499,7 +499,7 @@ Indicate the name of an R package
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -519,7 +519,7 @@ Indicate a file path
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -539,7 +539,7 @@ Indicate a metasyntactic variable
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -559,7 +559,7 @@ Indicate environment variable
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -579,7 +579,7 @@ Indicate a command-line option
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -599,7 +599,7 @@ Indicate the name of a command
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -619,7 +619,7 @@ Indicate the introductory or defining use of a term
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -639,7 +639,7 @@ Indicate a reference without a direct cross-reference
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -660,7 +660,7 @@ capital letters)
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -680,7 +680,7 @@ Indicate abbreviation
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -700,7 +700,7 @@ Inline equation
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -720,7 +720,7 @@ Display (block) equation
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -733,7 +733,7 @@ Insert the R system itself
 }
 
 \subsection{Returns}{
-A string.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -746,7 +746,7 @@ Insert an ellipsis of function argument lists
 }
 
 \subsection{Returns}{
-A string.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -759,7 +759,7 @@ Insert an ellipsis of ordinary text.
 }
 
 \subsection{Returns}{
-A string.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -772,7 +772,7 @@ Insert a line break
 }
 
 \subsection{Returns}{
-A string.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -785,7 +785,7 @@ Insert a tab character
 }
 
 \subsection{Returns}{
-A string.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -805,7 +805,7 @@ Indicate literal text
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -853,7 +853,7 @@ macro used within sections. Therefore, \code{rd_preparse} and
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-A string of formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
@@ -877,15 +877,15 @@ just ensures that each block follows a newline character.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-The formatted text.
+A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-RdParser-rd_preparse"></a>}}
 \if{latex}{\out{\hypertarget{method-RdParser-rd_preparse}{}}}
 \subsection{Method \code{rd_preparse()}}{
-A hook of command to be run before parsing the Rd
-section
+A hook function executed before parsing the Rd section.
+The output text will be directly passed to \verb{rd_*} sectioning methods.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{RdParser$rd_preparse(text)}\if{html}{\out{</div>}}
 }
@@ -905,15 +905,15 @@ A string of formatted text.
 \if{html}{\out{<a id="method-RdParser-rd_postparse"></a>}}
 \if{latex}{\out{\hypertarget{method-RdParser-rd_postparse}{}}}
 \subsection{Method \code{rd_postparse()}}{
-A hook of command to be run after parsing the Rd section
+A hook function executed after parsing the Rd section.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RdParser$rd_postparse(text)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{RdParser$rd_postparse(parsed)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{text}}{A one-element character representing the input text.}
+\item{\code{parsed}}{The output text from \verb{rd_*} sectioning methods.}
 }
 \if{html}{\out{</div>}}
 }

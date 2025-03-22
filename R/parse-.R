@@ -93,7 +93,7 @@ rd_is_newline <- function(x, trim = FALSE) {
     identical(text, "\n")
 }
 
-rd_trim_ws_nodes <- function(x, side = "both") {
+rd_trim_empty_nodes <- function(x, side = "both") {
     ws <- vapply(x, rd_is_empty, logical(1L), USE.NAMES = FALSE)
     if (!any(ws)) {
         return(x)

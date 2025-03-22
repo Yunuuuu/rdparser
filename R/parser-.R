@@ -52,7 +52,7 @@ RdParser <- R6Class(
     public = list(
         # format and style -----------------------------------------
         #' @description Indicate a section header
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         header = function(text, level) stop_not_implement(self, "header"),
 
         # It seems Rd document doesn't use this
@@ -60,14 +60,14 @@ RdParser <- R6Class(
         #     stop_not_implement(self, "blockquote")
         # },
         #' @description Add a code block
-        #' @param lang The language of the code block. Usually `r`.
-        #' @return The formatted text.
+        #' @param lang The language of the code block. Usually `r`/`R`.
+        #' @return A character for each line of the formatted text.
         codeblock = function(text, lang = NULL) {
             stop_not_implement(self, "codeblock")
         },
 
         #' @description Add a comment block
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         comment = function(text) stop_not_implement(self, "comment"),
 
         #  Lists and tables ----------------------------------------
@@ -96,11 +96,11 @@ RdParser <- R6Class(
 
         # links ----------------------------------------------------
         #' @description Create a hyperlink
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         href = function(text, href = NULL) stop_not_implement(self, "href"),
 
         #' @description Create an email link
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         email = function(text) {
             self$href(text, paste0("mailto:", text))
         },
@@ -109,7 +109,7 @@ RdParser <- R6Class(
         #' @param src The image source path or URL.
         #' @param alt Optional. Alternative text for the image.
         #' @param options Optional. Additional formatting options.
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         image = function(src, alt = NULL, options = NULL) {
             stop_not_implement(self, "image")
         },
@@ -117,116 +117,116 @@ RdParser <- R6Class(
         # Marking text --------------------------------------------
         # https://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Marking-text
         #' @description Apply italic formatting
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         emph = function(text) stop_not_implement(self, "emph"),
 
         #' @description Apply bold formatting
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         bold = function(text) stop_not_implement(self, "bold"),
 
         #' @description Apply italic and bold formatting
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         strong = function(text) stop_not_implement(self, "strong"),
 
         #' @description Apply double quotes
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         dQuote = function(text) sprintf("\"%s\"", text),
 
         #' @description Apply single quotes
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         sQuote = function(text) sprintf("'%s'", text),
 
         #' @description Format a fragment of R code or the name of an R object
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         code = function(text) stop_not_implement(self, "code"),
 
         #' @description Format text as keyboard input
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         kbd = function(text) text,
 
         #' @description Indicate verbatim word-wrapped text
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         samp = function(text) text,
 
         #' @description Indicate verbatim text (no wrapping or reformatting)
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         verb = function(text) text,
 
         #' @description Indicate the name of an R package
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         pkg = function(text) text,
 
         #' @description Indicate a file path
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         file = function(text) file,
 
         #' @description Indicate a metasyntactic variable
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         var = function(text) self$code(text),
 
         #' @description Indicate environment variable
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         env = function(text) text,
 
         #' @description Indicate a command-line option
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         option = function(text) text,
 
         #' @description Indicate the name of a command
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         command = function(text) text,
 
         #' @description Indicate the introductory or defining use of a term
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         dfn = function(text) text,
 
         #' @description Indicate a reference without a direct cross-reference
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         cite = function(text) text,
 
         #' @description Indicate an acronym (an abbreviation written in all
         #' capital letters)
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         acronym = function(text) text,
 
         #' @description Indicate abbreviation
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         abbr = function(text) text,
 
         # Mathematics ---------------------------------------------
         #' @description Inline equation
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         eqn = function(text) stop_not_implement(self, "eqn"),
 
         #' @description Display (block) equation
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         deqn = function(text) stop_not_implement(self, "deqn"),
 
         # Insertions ----------------------------------------------
         # https://rstudio.github.io/r-manuals/r-exts/Writing-R-documentation-files.html#FOOT124
 
         #' @description Insert the R system itself
-        #' @return A string.
+        #' @return A character for each line of the formatted text.
         R = function() "R",
 
         #' @description Insert an ellipsis of function argument lists
-        #' @return A string.
+        #' @return A character for each line of the formatted text.
         dots = function() "...",
 
         #' @description Insert an ellipsis of ordinary text.
-        #' @return A string.
+        #' @return A character for each line of the formatted text.
         ldots = function() "...",
 
         #' @description Insert a line break
-        #' @return A string.
+        #' @return A character for each line of the formatted text.
         cr = function() "\n", # break a line
 
         #' @description Insert a tab character
-        #' @return A string.
+        #' @return A character for each line of the formatted text.
         tab = function() "\t",
 
         #' @description Indicate literal text
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         out = function(text) text,
 
         # Conditional text ----------------------------------------
@@ -241,7 +241,7 @@ RdParser <- R6Class(
         #' macro used within sections. Therefore, `rd_preparse` and
         #' `rd_postparse` won't be applied before or after this method.
         #' @param title A string of the subsection title.
-        #' @return A string of formatted text.
+        #' @return A character for each line of the formatted text.
         subsection = function(text, title, level) {
             c(self$header(title, level), text)
         },
@@ -252,7 +252,7 @@ RdParser <- R6Class(
         #' just ensures that each block follows a newline character.
         #' @param parsed_list A list of one-element string of the parsed text.
         #' @param docs A list of the raw Rd document text.
-        #' @return The formatted text.
+        #' @return A character for each line of the formatted text.
         sectioning = function(parsed_list, docs) {
             # if next document text is a block or not?
             is_block <- FALSE
@@ -280,14 +280,15 @@ RdParser <- R6Class(
             paste0(unlist(parsed_list, FALSE, FALSE), collapse = "")
         },
 
-        #' @description A hook of command to be run before parsing the Rd
-        #' section
+        #' @description A hook function executed before parsing the Rd section.
+        #' The output text will be directly passed to `rd_*` sectioning methods.
         #' @return A string of formatted text.
         rd_preparse = function(text) text,
 
-        #' @description A hook of command to be run after parsing the Rd section
+        #' @description A hook function executed after parsing the Rd section.
+        #' @param parsed The output text from `rd_*` sectioning methods.
         #' @return A string of formatted text.
-        rd_postparse = function(text) text,
+        rd_postparse = function(parsed) parsed,
 
         #' @description Format the argument setction
         #' @return The formatted text.

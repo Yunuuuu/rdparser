@@ -1,3 +1,6 @@
+# https://developer.r-project.org/parseRd.pdf
+# Table 2: Table of markup macros within sections taking LaTeX-like text.
+
 # Leaves -----------------------------------------
 # Non-macro tags include TEXT, RCODE, VERB, COMMENT, UNKNOWN (an unrecognized
 # macro), and LIST (in Latex-like mode, a group of tokens in braces).
@@ -13,8 +16,8 @@ rd_parse.VERB <- rd_parse.TEXT
 
 #' @export
 rd_parse.COMMENT <- function(docs, ..., parser = rd_parser()) {
-    out <- as.character(docs)
-    paste(parser$comment(out), collapse = "\n")
+    text <- as.character(docs)
+    paste(parser$comment(text), collapse = "\n")
 }
 
 #' @export
@@ -35,11 +38,11 @@ rd_parse.tag_subsection <- function(
     level = 1L,
     parser = rd_parser()) {
     title <- .subset2(docs, 1L)
-    docs <- .subset2(docs, 2L)
-    out <- rd_flatten_text(docs, ..., level = level + 1L, parser = parser)
-    out <- rd_trim_newline(out)
+    text <- .subset2(docs, 2L)
+    text <- rd_flatten_text(text, ..., level = level + 1L, parser = parser)
+    text <- rd_trim_newline(text)
     title <- rd_flatten_text(title, ..., level = level + 1L, parser = parser)
-    paste(parser$subsection(out, title, level = level), collapse = "\n")
+    paste(parser$subsection(text, title, level = level), collapse = "\n")
 }
 
 # Methods -----------------------------------------------------------
@@ -71,20 +74,7 @@ method_usage <- function(x, type) {
     paste(method, fun, sep = "\n")
 }
 
-# Equations ------------------------------------------------------------------
-#' @export
-rd_parse.tag_eqn <- function(docs, ..., parser = rd_parser()) {
-    out <- rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
-    paste(parser$eqn(out), collapse = "\n")
-}
-
-#' @export
-rd_parse.tag_deqn <- function(docs, ..., parser = rd_parser()) {
-    out <- rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
-    paste(parser$deqn(out), collapse = "\n")
-}
-
-# Conditionals and Sexprs ----------------------------------------------------
+# Conditionals ----------------------------------------------------
 #' @export
 rd_parse.tag_if <- function(docs, ..., parser = rd_parser()) {
     if (isTRUE(parser$showif(.subset2(docs, 1L)))) {
@@ -103,29 +93,7 @@ rd_parse.tag_ifelse <- function(docs, ..., parser = rd_parser()) {
     }
 }
 
-# #' @export
-# rd_parse.tag_Sexpr <- function(docs, ...) {
-#     browser()
-# }
-
-# Used inside a \usage{} Rd tag to prevent the code from being treated as
-# regular R syntax, either because it is not valid R, or because its usage
-# intentionally deviates from regular R usage. An example of the former is the
-# command line documentation, e.g. `R CMD SHLIB`
-# (https://github.com/wch/r-source/blob/trunk/src/library/utils/man/SHLIB.Rd):
-#
-#    \special{R CMD SHLIB [options] [-o dllname] files}
-#
-# An example of the latter is the documentation shortcut `?`
-# (https://github.com/wch/r-source/blob/trunk/src/library/utils/man/Question.Rd):
-#
-#    \special{?topic}
-#
-#' @export
-rd_parse.tag_special <- function(docs, ...) {
-    rd_flatten_text(docs, ...)
-}
-
+# Platform-specific documentation --------------------------------
 #' @export
 `rd_parse.#ifdef` <- function(docs, ...) {
     os <- trimws(rd_flatten_text(.subset2(docs, 1L), ...))
@@ -146,48 +114,7 @@ rd_parse.tag_special <- function(docs, ...) {
     }
 }
 
-# Tables ---------------------------------------------------------------------
-#' @export
-rd_parse.tag_tabular <- function(docs, ..., parser = rd_parser()) {
-    align_abbr <- rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
-    align_abbr <- .subset2(strsplit(align_abbr, ""), 1L)
-    align_abbr <- align_abbr[!(align_abbr %in% c("|", ""))]
-    align <- unname(c("r" = "right", "l" = "left", "c" = "center")[align_abbr])
-
-    contents <- lapply(.subset2(docs, 2L), as_rd_tag)
-    classes <- vapply(
-        contents,
-        function(x) .subset(class(x), 1L),
-        character(1L),
-        USE.NAMES = FALSE
-    )
-    sep <- classes %in% c("tag_cr", "tag_tab")
-    contents[sep] <- list(new_tag_null()) # remove separator
-
-    # Identify groups in reverse order (preserve empty cells)
-    # Negative maintains correct ordering once reversed
-    cell_grp <- rev(cumsum(-rev(sep)))
-
-    cells <- unname(split(contents, cell_grp))
-    # Remove trailing content (that does not match the dimensions of the table)
-    cells <- cells[seq_len(length(cells) - length(cells) %% length(align))]
-    cell_contents <- vapply(
-        cells,
-        rd_flatten_text,
-        character(1L),
-        ...,
-        parser = parser,
-        USE.NAMES = FALSE
-    )
-    table <- matrix(
-        cell_contents,
-        ncol = length(align),
-        byrow = TRUE
-    )
-    paste(parser$tabular(table, align), collapse = "\n")
-}
-
-# List -----------------------------------------------------------------------
+# List --------------------------------------------------------
 #' @export
 rd_parse.tag_itemize <- function(docs, ...) {
     rd_parse_items(docs, enum = FALSE, ...)
@@ -264,57 +191,53 @@ rd_parse_definitions <- function(x, ..., parser = rd_parser()) {
     paste(parser$dl(terms, descriptions), collapse = "\n")
 }
 
-#' @export
-rd_parse.tag_preformatted <- function(docs, ..., parser = rd_parser()) {
-    text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$codeblock(text), collapse = "\n")
-}
-
 # Effectively does nothing: only used by rd_parse_items() to split up
 # sequence of tags.
 #' @export
 rd_parse.tag_item <- function(docs, ...) ""
 
-# Insertions --------------------------------------------------------------
-# markup macros within sections taking no text
+# Tables --------------------------------------------------------
 #' @export
-rd_parse.tag_R <- function(docs, ..., parser = rd_parser()) {
-    paste(parser$R(), collapse = "\n")
-}
+rd_parse.tag_tabular <- function(docs, ..., parser = rd_parser()) {
+    align_abbr <- rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
+    align_abbr <- .subset2(strsplit(align_abbr, ""), 1L)
+    align_abbr <- align_abbr[!(align_abbr %in% c("|", ""))]
+    align <- unname(c("r" = "right", "l" = "left", "c" = "center")[align_abbr])
 
-#' @export
-rd_parse.tag_dots <- function(docs, ..., parser = rd_parser()) {
-    paste(parser$dots(), collapse = "\n")
-}
+    contents <- lapply(.subset2(docs, 2L), as_rd_tag)
+    classes <- vapply(
+        contents,
+        function(x) .subset(class(x), 1L),
+        character(1L),
+        USE.NAMES = FALSE
+    )
+    sep <- classes %in% c("tag_cr", "tag_tab")
+    contents[sep] <- list(new_tag_null()) # remove separator
 
-#' @export
-rd_parse.tag_ldots <- function(docs, ..., parser = rd_parser()) {
-    paste(parser$ldots(), collapse = "\n")
-}
+    # Identify groups in reverse order (preserve empty cells)
+    # Negative maintains correct ordering once reversed
+    cell_grp <- rev(cumsum(-rev(sep)))
 
-#' @export
-rd_parse.tag_cr <- function(docs, ..., parser = rd_parser()) {
-    paste(parser$cr(), collapse = "\n")
+    cells <- unname(split(contents, cell_grp))
+    # Remove trailing content (that does not match the dimensions of the table)
+    cells <- cells[seq_len(length(cells) - length(cells) %% length(align))]
+    cell_contents <- vapply(
+        cells,
+        rd_flatten_text,
+        character(1L),
+        ...,
+        parser = parser,
+        USE.NAMES = FALSE
+    )
+    table <- matrix(
+        cell_contents,
+        ncol = length(align),
+        byrow = TRUE
+    )
+    paste(parser$tabular(table, align), collapse = "\n")
 }
 
 #' @export
 rd_parse.tag_tab <- function(docs, ..., parser = rd_parser()) {
     paste(parser$tab(), collapse = "\n")
 }
-
-# First element of enc is the encoded version (second is the ascii version)
-#' @export
-rd_parse.tag_enc <- function(docs, ...) {
-    if (length(docs) == 2L) {
-        rd_flatten_text(.subset2(docs, 2L), ...)
-    } else {
-        rd_stop_bad_tag("enc")
-    }
-}
-
-# Elements that don't return anything ----------------------------------------
-#' @export
-rd_parse.tag_newcommand <- function(docs, ...) ""
-
-#' @export
-rd_parse.tag_renewcommand <- function(docs, ...) ""
