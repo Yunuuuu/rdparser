@@ -115,7 +115,7 @@ rd_document <- function(rd, parser = rd_parser(), autolink = FALSE,
         con <- file(open = "w+")
         on.exit(close(con), add = TRUE)
     } else if (is.character(ofile)) {
-        if (length(ofile) != 1L || nzchar(ofile)) {
+        if (length(ofile) != 1L || !nzchar(ofile)) {
             stop("`ofile` must be a single string of file path", call. = FALSE)
         }
         if (ofile == "clipboard") {
