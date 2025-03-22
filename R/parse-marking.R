@@ -84,8 +84,8 @@ rd_parse.tag_email <- function(docs, ..., parser = rd_parser()) {
     if (length(docs) != 1L) {
         rd_stop_bad_tag("email", "empty {}")
     }
-    text <- parser$email(rd_flatten_text(.subset2(docs, 1L)))
-    paste(text, collapse = "\n")
+    text <- rd_flatten_text(.subset2(docs, 1L))
+    paste(parser$email(text), collapse = "\n")
 }
 
 #' @export

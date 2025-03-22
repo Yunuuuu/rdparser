@@ -52,8 +52,9 @@ RdParser <- R6Class(
     public = list(
         # format and style -----------------------------------------
         #' @description Indicate a section header
+        #' @param title A string of the header title.
         #' @return A character for each line of the formatted text.
-        header = function(text, level) stop_not_implement(self, "header"),
+        header = function(title, level) stop_not_implement(self, "header"),
 
         # It seems Rd document doesn't use this
         # blockquote = function(text) {

@@ -93,13 +93,13 @@ extend and customize the parser with additional formatting styles.
 \subsection{Method \code{header()}}{
 Indicate a section header
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RdParser$header(text, level)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{RdParser$header(title, level)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{text}}{A one-element character representing the input text.}
+\item{\code{title}}{A string of the header title.}
 
 \item{\code{level}}{An integer representing the header level.}
 }
