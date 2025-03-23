@@ -64,13 +64,13 @@ rd_parse.tag_special <- function(docs, ...) {
 #' @export
 rd_parse.tag_eqn <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
-    paste(parser$eqn(text), collapse = "\n")
+    rd_postparser(parser$eqn(text))
 }
 
 #' @export
 rd_parse.tag_deqn <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
-    paste(parser$deqn(text), collapse = "\n")
+    rd_postparser(parser$deqn(text))
 }
 
 # Elements that don't return anything ----------------------------------------
@@ -98,5 +98,5 @@ rd_parse.tag_figure <- function(docs, ..., parser = rd_parser()) {
             alt <- opt
         }
     }
-    paste(parser$image(path, alt, options), collapse = "\n")
+    rd_postparser(parser$image(path, alt, options))
 }

@@ -30,6 +30,8 @@ rd_parser <- function(..., parser = "markdown") {
     }
 }
 
+rd_postparser <- function(text) paste(text, collapse = "\n")
+
 #' Rd Document Parser
 #'
 #' @description

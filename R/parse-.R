@@ -61,10 +61,10 @@ rd_flatten_text <- function(docs, ...) {
 
 rd_flatten_para <- function(docs, ..., parser = rd_parser()) {
     if (length(docs) == 0L) return("") # styler: off
-    parsed <- lapply(docs, function(doc) {
+    parsed <- vapply(docs, function(doc) {
         rd_parse(docs = as_rd_tag(doc), ..., parser = parser)
-    })
-    paste(parser$sectioning(parsed, docs), collapse = "\n")
+    }, character(1L), USE.NAMES = FALSE)
+    rd_postparser(parser$sectioning(parsed, docs))
 }
 
 rd_stop_bad_tag <- function(tag, msg = NULL) {

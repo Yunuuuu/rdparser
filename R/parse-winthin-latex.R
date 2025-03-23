@@ -16,8 +16,7 @@ rd_parse.VERB <- rd_parse.TEXT
 
 #' @export
 rd_parse.COMMENT <- function(docs, ..., parser = rd_parser()) {
-    text <- as.character(docs)
-    paste(parser$comment(text), collapse = "\n")
+    rd_postparser(parser$comment(as.character(docs)))
 }
 
 #' @export
@@ -32,17 +31,14 @@ rd_parse.USERMACRO <- function(docs, ...) ""
 
 # subsection ---------------------------------------------------------
 #' @export
-rd_parse.tag_subsection <- function(
-    docs,
-    ...,
-    level = 1L,
-    parser = rd_parser()) {
+rd_parse.tag_subsection <- function(docs, ..., level = 1L,
+                                    parser = rd_parser()) {
     title <- .subset2(docs, 1L)
     text <- .subset2(docs, 2L)
-    text <- rd_flatten_text(text, ..., level = level + 1L, parser = parser)
+    text <- rd_flatten_para(text, ..., level = level + 1L, parser = parser)
     text <- rd_trim_newline(text)
     title <- rd_flatten_text(title, ..., level = level + 1L, parser = parser)
-    paste(parser$subsection(text, title, level = level), collapse = "\n")
+    rd_postparser(parser$subsection(text, title, level = level))
 }
 
 # Methods -----------------------------------------------------------
@@ -151,11 +147,10 @@ rd_parse_items <- function(x, enum = FALSE, ..., parser = rd_parser()) {
     # heading
     descriptions <- sub("^ ", "", descriptions)
     if (enum) {
-        out <- parser$ol(descriptions)
+        rd_postparser(parser$ol(descriptions))
     } else {
-        out <- parser$ul(descriptions)
+        rd_postparser(parser$ul(descriptions))
     }
-    paste(out, collapse = "\n")
 }
 
 #' @export
@@ -188,7 +183,7 @@ rd_parse_definitions <- function(x, ..., parser = rd_parser()) {
         }
     }
     if (is.null(terms)) return("") # styler: off
-    paste(parser$dl(terms, descriptions), collapse = "\n")
+    rd_postparser(parser$dl(terms, descriptions))
 }
 
 # Effectively does nothing: only used by rd_parse_items() to split up
@@ -234,10 +229,10 @@ rd_parse.tag_tabular <- function(docs, ..., parser = rd_parser()) {
         ncol = length(align),
         byrow = TRUE
     )
-    paste(parser$tabular(table, align), collapse = "\n")
+    rd_postparser(parser$tabular(table, align))
 }
 
 #' @export
 rd_parse.tag_tab <- function(docs, ..., parser = rd_parser()) {
-    paste(parser$tab(), collapse = "\n")
+    rd_postparser(parser$tab())
 }

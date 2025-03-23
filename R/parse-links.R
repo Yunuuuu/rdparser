@@ -27,7 +27,7 @@ rd_parse.tag_link <- function(docs, ..., autolink = TRUE,
     } else {
         href <- NULL
     }
-    paste(parser$href(in_braces, href = href), collapse = "\n")
+    rd_postparser(parser$href(in_braces, href = href))
 }
 
 #' @export
@@ -46,5 +46,5 @@ rd_parse.tag_linkS4class <- function(docs, ..., autolink = TRUE,
     } else {
         href <- NULL
     }
-    paste(parser$href(text, href), collapse = "\n")
+    rd_postparser(parser$href(text, href))
 }

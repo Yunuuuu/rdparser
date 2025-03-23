@@ -2,31 +2,31 @@
 #' @export
 rd_parse.tag_emph <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$emph(text), collapse = "\n")
+    rd_postparser(parser$emph(text))
 }
 
 #' @export
 rd_parse.tag_bold <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$bold(text), collapse = "\n")
+    rd_postparser(parser$bold(text))
 }
 
 #' @export
 rd_parse.tag_strong <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$strong(text), collapse = "\n")
+    rd_postparser(parser$strong(text))
 }
 
 #' @export
 rd_parse.tag_sQuote <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$sQuote(text), collapse = "\n")
+    rd_postparser(parser$sQuote(text))
 }
 
 #' @export
 rd_parse.tag_dQuote <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$dQuote(text), collapse = "\n")
+    rd_postparser(parser$dQuote(text))
 }
 
 #' @export
@@ -36,47 +36,47 @@ rd_parse.tag_code <- function(docs, ..., autolink = TRUE,
     if (autolink) {
         href <- downlit::autolink_url(text)
         if (!is.na(href)) {
-            text <- parser$href(parser$code(text), href = href)
-            return(paste(text, collapse = "\n"))
+            text <- rd_postparser(parser$code(text))
+            return(rd_postparser(parser$href(text, href = href)))
         }
     }
-    paste(parser$code(text), collapse = "\n")
+    rd_postparser(parser$code(text))
 }
 
 #' @export
 rd_parse.tag_preformatted <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$codeblock(text), collapse = "\n")
+    rd_postparser(parser$codeblock(text))
 }
 
 #' @export
 rd_parse.tag_kbd <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$kbd(text), collapse = "\n")
+    rd_postparser(parser$kbd(text))
 }
 
 #' @export
 rd_parse.tag_samp <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$samp(text), collapse = "\n")
+    rd_postparser(parser$samp(text))
 }
 
 #' @export
 rd_parse.tag_verb <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$verb(text), collapse = "\n")
+    rd_postparser(parser$verb(text))
 }
 
 #' @export
 rd_parse.tag_pkg <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$pkg(text), collapse = "\n")
+    rd_postparser(parser$pkg(text))
 }
 
 #' @export
 rd_parse.tag_file <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$file(text), collapse = "\n")
+    rd_postparser(parser$file(text))
 }
 
 #' @export
@@ -85,7 +85,7 @@ rd_parse.tag_email <- function(docs, ..., parser = rd_parser()) {
         rd_stop_bad_tag("email", "empty {}")
     }
     text <- rd_flatten_text(.subset2(docs, 1L))
-    paste(parser$email(text), collapse = "\n")
+    rd_postparser(parser$email(text))
 }
 
 #' @export
@@ -99,7 +99,7 @@ rd_parse.tag_url <- function(docs, ..., parser = rd_parser()) {
         rd_stop_bad_tag("url", msg)
     }
     text <- rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
-    paste(parser$href(text, text), collapse = "\n")
+    rd_postparser(parser$href(text, text))
 }
 
 #' @export
@@ -108,53 +108,53 @@ rd_parse.tag_href <- function(docs, ..., parser = rd_parser()) {
         rd_flatten_text(.subset2(docs, 2L), ..., parser = parser),
         rd_flatten_text(.subset2(docs, 1L), ..., parser = parser)
     )
-    paste(text, collapse = "\n")
+    rd_postparser(text)
 }
 
 #' @export
 rd_parse.tag_var <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$var(text), collapse = "\n")
+    rd_postparser(parser$var(text))
 }
 
 #' @export
 rd_parse.tag_env <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$env(text), collapse = "\n")
+    rd_postparser(parser$env(text))
 }
 
 #' @export
 rd_parse.tag_option <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$option(text), collapse = "\n")
+    rd_postparser(parser$option(text))
 }
 
 #' @export
 rd_parse.tag_command <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$command(text), collapse = "\n")
+    rd_postparser(parser$command(text))
 }
 
 #' @export
 rd_parse.tag_dfn <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$dfn(text), collapse = "\n")
+    rd_postparser(parser$dfn(text))
 }
 
 #' @export
 rd_parse.tag_cite <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$cite(text), collapse = "\n")
+    rd_postparser(parser$cite(text))
 }
 
 #' @export
 rd_parse.tag_acronym <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$acronym(text), collapse = "\n")
+    rd_postparser(parser$acronym(text))
 }
 
 #' @export
 rd_parse.tag_abbr <- function(docs, ..., parser = rd_parser()) {
     text <- rd_flatten_text(docs, ..., parser = parser)
-    paste(parser$abbr(text), collapse = "\n")
+    rd_postparser(parser$abbr(text))
 }
