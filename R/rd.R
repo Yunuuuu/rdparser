@@ -84,7 +84,7 @@ rd_file <- function(file, ...) {
 #'  - [`rd_text()`]/[`rd_file()`]
 #' @export
 rd_document <- function(rd, parser = rd_parser(), autolink = FALSE,
-                        ofile = NULL, level = 1L) {
+                        ofile = NULL, level = 1) {
     if (!inherits(rd, "Rd")) {
         stop("`rd` must be a `Rd` object", call. = FALSE)
     }
@@ -104,7 +104,7 @@ rd_document <- function(rd, parser = rd_parser(), autolink = FALSE,
             question <- c(msg, "would you like to install it?")
             cat(question, sep = ", ")
             cat("\n")
-            if (utils::menu(c("Yes", "No")) == 1) {
+            if (utils::menu(c("Yes", "No")) == 1L) {
                 install_pkgs("downlit")
                 invokeRestart("abort")
             }

@@ -117,8 +117,7 @@
       |  a  | `b` |
       | foo | bar |
 
-# tables with tailing 
- (#978)
+# tables with tailing (#978)
 
     Code
       cat_line(rd_text(

@@ -71,12 +71,11 @@ md_list <- function(terms, descriptions, sep) {
     # 1. item 1
     #    text for item 1
     # 2. item 2
+    terms <- gsub("\\s*\\n\\s*", " ", terms)
     contents <- strsplit(descriptions, "\\n")
-    header <- character(sum(lengths(contents)))
-    index <- c(0L, lengths(contents)[-length(contents)]) + 1L
-    header[index] <- paste0(format(terms, justify = "right"), sep)
-    paste0(
-        format(header, justify = "right"),
-        unlist(contents, FALSE, FALSE)
-    )
+    out <- .mapply(function(term, desc) {
+        header <- c(paste0(term, sep), rep_len("", length(desc) - 1L))
+        paste0(format(header, justify = "left"), desc)
+    }, list(terms, contents), NULL)
+    unlist(out, FALSE, FALSE)
 }

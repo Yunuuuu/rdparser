@@ -9,7 +9,7 @@ rd_document(
   parser = rd_parser(),
   autolink = FALSE,
   ofile = NULL,
-  level = 1L
+  level = 1
 )
 }
 \arguments{

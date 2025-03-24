@@ -112,7 +112,7 @@ test_that("code blocks in tables render (#978)", {
     )
 })
 
-test_that("tables with tailing \n (#978)", {
+test_that("tables with tailing (#978)", {
     expect_snapshot(
         cat_line(rd_text(
             "\\tabular{ll}{

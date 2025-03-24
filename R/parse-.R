@@ -64,7 +64,7 @@ rd_flatten_para <- function(docs, ..., parser = rd_parser()) {
     parsed <- vapply(docs, function(doc) {
         rd_parse(docs = as_rd_tag(doc), ..., parser = parser)
     }, character(1L), USE.NAMES = FALSE)
-    rd_postparser(parser$sectioning(parsed, docs))
+    rd_postparser(parser$paragraph(parsed, docs))
 }
 
 rd_stop_bad_tag <- function(tag, msg = NULL) {

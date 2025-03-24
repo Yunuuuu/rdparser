@@ -57,7 +57,7 @@ extend and customize the parser with additional formatting styles.
 \item \href{#method-RdParser-out}{\code{RdParser$out()}}
 \item \href{#method-RdParser-showif}{\code{RdParser$showif()}}
 \item \href{#method-RdParser-subsection}{\code{RdParser$subsection()}}
-\item \href{#method-RdParser-sectioning}{\code{RdParser$sectioning()}}
+\item \href{#method-RdParser-paragraph}{\code{RdParser$paragraph()}}
 \item \href{#method-RdParser-rd_preparse}{\code{RdParser$rd_preparse()}}
 \item \href{#method-RdParser-rd_postparse}{\code{RdParser$rd_postparse()}}
 \item \href{#method-RdParser-rd_arguments}{\code{RdParser$rd_arguments()}}
@@ -857,20 +857,20 @@ A character for each line of the formatted text.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-RdParser-sectioning"></a>}}
-\if{latex}{\out{\hypertarget{method-RdParser-sectioning}{}}}
-\subsection{Method \code{sectioning()}}{
+\if{html}{\out{<a id="method-RdParser-paragraph"></a>}}
+\if{latex}{\out{\hypertarget{method-RdParser-paragraph}{}}}
+\subsection{Method \code{paragraph()}}{
 Formats the Rd document sectioning. Some sections may
 contain multiple paragraphs and nested blocks. This default method
 just ensures that each block follows a newline character.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{RdParser$sectioning(parsed_list, docs)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{RdParser$paragraph(parsed, docs)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{parsed_list}}{A list of one-element string of the parsed text.}
+\item{\code{parsed}}{A character of the parsed texts.}
 
 \item{\code{docs}}{A list of the raw Rd document text.}
 }

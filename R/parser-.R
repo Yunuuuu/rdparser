@@ -246,17 +246,17 @@ RdParser <- R6Class(
         #' @param title A string of the subsection title.
         #' @return A character for each line of the formatted text.
         subsection = function(text, title, level) {
-            c(self$header(title, level), text)
+            self$rd_section(text, title, level)
         },
 
         # Sectioning -----------------------------------------------
         #' @description Formats the Rd document sectioning. Some sections may
         #' contain multiple paragraphs and nested blocks. This default method
         #' just ensures that each block follows a newline character.
-        #' @param parsed_list A list of one-element string of the parsed text.
+        #' @param parsed A character of the parsed texts.
         #' @param docs A list of the raw Rd document text.
         #' @return A character for each line of the formatted text.
-        sectioning = function(parsed_list, docs) {
+        paragraph = function(parsed, docs) {
             # if next document text is a block or not?
             is_block <- FALSE
             tag_blocks <- sprintf("tag_%s", c(
@@ -270,17 +270,15 @@ RdParser <- R6Class(
                     next
                     # styler: off
                 } else if (is_block &&
-                           !grepl("\n$", .subset2(parsed_list, i))) {
+                           !grepl("\n$", .subset(parsed, i))) {
                     # styler: on
                     # the next text is a block
                     # we always ensure every block is in the next line
-                    parsed_list[i] <- list(
-                        paste0(.subset2(parsed_list, i), "\n")
-                    )
+                    parsed[i] <- paste0(.subset(parsed, i), "\n")
                 }
                 is_block <- FALSE
             }
-            paste0(unlist(parsed_list, FALSE, FALSE), collapse = "")
+            paste0(parsed, collapse = "")
         },
 
         #' @description A hook function executed before parsing the Rd section.

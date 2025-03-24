@@ -143,9 +143,6 @@ rd_parse_items <- function(x, enum = FALSE, ..., parser = rd_parser()) {
         character(1L),
         USE.NAMES = FALSE
     )
-    # for item without argument, there will always be a single space in the
-    # heading
-    descriptions <- sub("^ ", "", descriptions)
     if (enum) {
         rd_postparser(parser$ol(descriptions))
     } else {
